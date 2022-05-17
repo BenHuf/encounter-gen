@@ -14,7 +14,9 @@
     padding: 8px;
     margin: 8px;
 }
-
+table {
+    text-align: center;
+}
 .creature-block {
     border-bottom: 1px solid red;
 }
