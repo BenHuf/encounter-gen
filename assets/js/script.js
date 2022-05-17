@@ -3,8 +3,8 @@ var $container = $("#encounter-container")
 var allMonstersUrl = 'https://api.open5e.com/monsters/?limit=1100';
 var someMonstersUrl = 'https://api.open5e.com/monsters/?limit=100';
 var searchMonster = 'https://api.open5e.com/monsters/?search='
-var elementType = ''
 var secondMonsterUrl = "https://www.dnd5eapi.co/api/monsters";
+var elementType = ''
 
 // retrieved this variable by running a loop through all monster entries 
 // and pushing values for name into an array
@@ -1510,13 +1510,13 @@ for (var i = 0; i < data.results.length; i++) {
 
 
             var $card = $('<div>').attr('id', [i]).addClass("creature-card border w-100 p-3 my-3 mx-3 col-10 col-md-5").appendTo($container)
-            var $nameBlock = $('<div>').addClass("name-block border-bottom border-danger").appendTo($card)
-            var $statBlock = $('<div>').addClass("stat-block border-bottom border-danger").appendTo($card)
-            var $abilityScoreBlock = $('<table>').addClass("ability-table w100 border-bottom border-danger").appendTo($card)
-            var $skillBlock = $('<div>').addClass("skill-block border-bottom border-danger").appendTo($card)
-            var $abilityBlock = $('<div>').addClass("ability-block border-bottom border-danger").appendTo($card)
-            var $actionBlock = $('<div>').addClass("action-block border-bottom border-danger").appendTo($card)
-            var $reactionBlock = $('<div>').addClass("reaction-block border-bottom border-danger").appendTo($card)
+            var $nameBlock = $('<div>').addClass("name-block creature-block border-bottom border-danger").appendTo($card)
+            var $statBlock = $('<div>').addClass("stat-block creature-block border-bottom border-danger").appendTo($card)
+            var $abilityScoreBlock = $('<table>').addClass("ability-table creature-block w100 border-bottom border-danger").appendTo($card)
+            var $skillBlock = $('<div>').addClass("skill-block creature-block border-bottom border-danger").appendTo($card)
+            var $abilityBlock = $('<div>').addClass("ability-block creature-block border-bottom border-danger").appendTo($card)
+            var $actionBlock = $('<div>').addClass("action-block creature-block border-bottom border-danger").appendTo($card)
+            var $reactionBlock = $('<div>').addClass("reaction-block creature-block border-bottom border-danger").appendTo($card)
             
             var parseAbilities = function(arr) {
                 if (!arr) {
