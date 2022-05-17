@@ -1,8 +1,8 @@
 /* Ben added these styles lol */
 .ui-autocomplete { 
-    max-height: 100px; 
+    max-height: 100px;
     background-color: darkgrey;
-    overflow-y: scroll; 
+    overflow-y: scroll;
     overflow-x: hidden;
     border: 1px solid #212529;
     border-radius: 0.25rem;
@@ -14,9 +14,11 @@
     padding: 8px;
     margin: 8px;
 }
+
 table {
     text-align: center;
 }
+
 .creature-block {
     border-bottom: 1px solid red;
 }

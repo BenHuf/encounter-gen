@@ -2,9 +2,9 @@
 var $container = $("#encounter-container")
 var allMonstersUrl = 'https://api.open5e.com/monsters/?limit=1100';
 var someMonstersUrl = 'https://api.open5e.com/monsters/?limit=100';
-var searchMonster = 'https://api.open5e.com/monsters/?search='
+var searchMonster = 'https://api.open5e.com/monsters/?search=';
 var secondMonsterUrl = "https://www.dnd5eapi.co/api/monsters";
-var elementType = ''
+var elementType = '';
 
 // retrieved this variable by running a loop through all monster entries 
 // and pushing values for name into an array
