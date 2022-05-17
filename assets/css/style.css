@@ -1,0 +1,8 @@
+.ui-autocomplete { 
+    max-height: 100px; 
+    background-color: darkgrey;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    border: 1px solid #212529;
+    border-radius: 0.25rem;
+}
