@@ -23,14 +23,7 @@
 
         </div>
         <!-- IGNORE THIS PLEASE-->
-        <form id="search-form" class="inline">
-            <div class="form-group">
-                <input id="search-input" class="search-term" type="text" name="search-field" placeholder="search"/>
-            </div>
-            <div class="" style="width: 10%;">
-                <button class="" id="submit-search" type="submit">Search</button>
-            </div>
-        </form>
+        
         <!-- IGNORE THIS PLEASE -- END-->
 
         <div>
@@ -53,36 +46,35 @@
 
 
     <!-- RTD Modal -->
-<div class="modal fade" id="rtd-modal" tabindex="-1" role="dialog" aria-labelledby="rtd-modal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="myModalTitle">Roll the dice!!!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form>
-            <div class="form-group">
-                <label for="modal-quantity">How many dice would you like to roll? Enter a number.</label>
-                <input type="number" class="form-control" id="modal-quantity-input"></input>
-            </div>
-            <div class="form-group">
-                <label for="modal-dice-type">What type of die? Enter a numer.</label>
-                <input type="number" class="form-control" id="modal-dice-type-input">
-            </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-save">Roll</button>
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Roll the dice!!!</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="modal-quantity">How many dice would you like to roll? Enter a number.</label>
+                        <input type="number" class="form-control" id="modal-quantity-input"></input>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-dice-type">What type of die? Enter a numer.</label>
+                        <input type="number" class="form-control" id="modal-dice-type-input">
+                    </div>
+                    </form>
+            </section>
+        <footer class="modal-card-foot">
+            <button class="button is-success">Save changes</button>
+            <button class="button">Cancel</button>
+        </footer>
         </div>
     </div>
 
     <!-- Search Modal -->
-    <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" aria-labelledby="search-modal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal" id="search-modal">
+        <div class="modal-background"></div>
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="myModalTitle">Roll the dice!!!</h5>
@@ -91,15 +83,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
-                <div class="form-group">
-                    <label for="modal-quantity">How many dice would you like to roll? Enter a number.</label>
-                    <input type="number" class="form-control" id="modal-quantity-input"></input>
-                </div>
-                <div class="form-group">
-                    <label for="modal-dice-type">What type of die? Enter a numer.</label>
-                    <input type="number" class="form-control" id="modal-dice-type-input">
-                </div>
+                <form id="search-form" class="inline">
+                    <div class="form-group">
+                        <input id="search-input" class="search-term" type="text" name="search-field" placeholder="search"/>
+                    </div>
+                    <div class="" style="width: 10%;">
+                        <button class="" id="submit-search" type="submit">Search</button>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
