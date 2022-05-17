@@ -8,6 +8,13 @@
     border-radius: 0.25rem;
 }
 
+.name {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    margin-top: 0;
+}
+
 .creature-card {
     border: 1px solid black;
     width: 100%;
@@ -33,5 +40,9 @@ table {
 
 .bold {
     font-weight: bold;
+}
+
+.ui-helper-hidden-accessible{
+    display:none !important;
 }
 /* End Ben Styles */
