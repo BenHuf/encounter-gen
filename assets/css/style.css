@@ -6,3 +6,11 @@
     border: 1px solid #212529;
     border-radius: 0.25rem;
 }
+
+.inline {
+    display: inline;
+}
+
+.w-100 {
+    width: 100%;
+}
