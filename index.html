@@ -30,7 +30,44 @@
 
     </div>
 
-    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Modal -->
+<div class="modal fade" id="task-form-modal" tabindex="-1" role="dialog" aria-labelledby="task-form-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="myModalTitle">Roll the dice!!!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+            <div class="form-group">
+                <label for="modal-quantity">How many dice would you like to roll? Enter a number.</label>
+                <input type="number" class="form-control" id="modal-quantity-input"></input>
+            </div>
+            <div class="form-group">
+                <label for="modal-dice-type">What type of die? Enter a numer.</label>
+                <input type="number" class="form-control" id="modal-dice-type-input">
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-save">Roll</button>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
 
