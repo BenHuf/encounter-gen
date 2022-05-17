@@ -1,3 +1,4 @@
+/* Ben added these styles lol */
 .ui-autocomplete { 
     max-height: 100px; 
     background-color: darkgrey;
@@ -5,6 +6,19 @@
     overflow-x: hidden;
     border: 1px solid #212529;
     border-radius: 0.25rem;
+}
+
+.creature-card {
+    border: 1px solid black;
+    width: 100%;
+    padding: 8px;
+    margin: 8px;
+}
+table {
+    text-align: center;
+}
+.creature-block {
+    border-bottom: 1px solid red;
 }
 
 .inline {
@@ -18,3 +32,4 @@
 .bold {
     font-weight: bold;
 }
+/* End Ben Styles */
