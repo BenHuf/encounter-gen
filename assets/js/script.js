@@ -3,11 +3,12 @@ var $container = $("#encounter-container")
 var allMonstersUrl = 'https://api.open5e.com/monsters/?limit=1100';
 var someMonstersUrl = 'https://api.open5e.com/monsters/?limit=100';
 var searchMonster = 'https://api.open5e.com/monsters/';
-var secondMonsterUrl = "https://www.dnd5eapi.co/api/monsters";
 var elementType = '';
 var cardCount = 0;
+var savedCreatures = [];
+var savedEncounters = [];
 
-// retrieved this variable by running a loop through all monster entries 
+// retrieved this variable by running a loop through all monster entries
 // and pushing values for name into an array
 // to save resources and speed up document load time I copied this from console.log
 const creatureNames = [
@@ -1481,6 +1482,7 @@ fetch(url)
     });
 }
 
+// featces url and returns json (Called by createCard)
 var fetchStatblock = async function(url) {
     var monsterStats = await fetch(url);
     return monsterStats.json();
@@ -1489,32 +1491,56 @@ var fetchStatblock = async function(url) {
 // heart of the cards from existing data 
 var createCard = async function(url) {
     // object properties set to variables
-    var results = await fetchStatblock(url)
-    
+    var results = await fetchStatblock(url);
+
     // need to separate these string values
-    // will de-"deobjectify" the other values in a later refactor
-    var strSave = nullChecker(results.strength_save)
-    var dexSave = nullChecker(results.dexterity_save)
-    var conSave = nullChecker(results.constitution_save)
-    var intSave = nullChecker(results.intelligence_save)
-    var wisSave = nullChecker(results.wisdom_save)
-    var chaSave = nullChecker(results.charisma_save)
-    var savingThrows = "STR " + strSave + ", DEX " + dexSave + ", CON " + conSave + ", INT " + intSave + ", WIS " + wisSave + ", CHA " + chaSave
+    var name = results.name
+    var size = results.size
+    var type = results.type
+    var alignment = results.alignment
+    var armorClass = results.armor_class
+    var armorDescription = nullChecker(results.armor_desc)
+    var hitPoints = results.hit_points
+    var hitDice = results.hit_dice
+    var speedVal = results.speed
+    var speed = deObjectify(speedVal);
+    var STR = results.strength
+    var DEX = results.dexterity
+    var CON = results.constitution
+    var INT = results.intelligence
+    var WIS = results.wisdom
+    var CHA = results.charisma
+    var strSave = nullChecker(results.strength_save);
+    var dexSave = nullChecker(results.dexterity_save);
+    var conSave = nullChecker(results.constitution_save);
+    var intSave = nullChecker(results.intelligence_save);
+    var wisSave = nullChecker(results.wisdom_save);
+    var chaSave = nullChecker(results.charisma_save);
+    var savingThrows = "STR " + strSave + ", DEX " + dexSave + ", CON " + conSave + ", INT " + intSave + ", WIS " + wisSave + ", CHA " + chaSave;
+    var skills = deObjectify(results.skills)
+    var senses = results.senses
+    var languages = results.languages
+    var challenge = results.challenge_rating
+    var abilities = results.special_abilities
+    var actions = results.actions
+    var reactions = results.reactions
 
     // jquery variables
-    var $card = $('<div>').attr('id', cardCount).addClass("creature-card border w-100 p-3 my-3 mx-3 col-10 col-md-5").appendTo($container)
-    var $nameBlock = $('<div>').addClass("name-block creature-block border-bottom border-danger").appendTo($card)
-    var $statBlock = $('<div>').addClass("stat-block creature-block border-bottom border-danger").appendTo($card)
-    var $abilityScoreBlock = $('<table>').addClass("ability-table creature-block w-100 border-bottom border-danger").appendTo($card)
-    var $skillBlock = $('<div>').addClass("skill-block creature-block border-bottom border-danger").appendTo($card)
-    var $abilityBlock = $('<div>').addClass("ability-block creature-block border-bottom border-danger").appendTo($card)
-    var $actionBlock = $('<div>').addClass("action-block creature-block border-bottom border-danger").appendTo($card)
-    var $reactionBlock = $('<div>').addClass("reaction-block creature-block border-bottom border-danger").appendTo($card)
+    var $card = $('<div>').attr('id', cardCount).addClass("creature-card border w-100").appendTo($container);
+    var $nameBlock = $('<div>').addClass("name-block creature-block border-bottom border-danger").appendTo($card);
+    var $statBlock = $('<div>').addClass("stat-block creature-block border-bottom border-danger").appendTo($card);
+    var $abilityScoreBlock = $('<table>').addClass("ability-table creature-block w-100 border-bottom border-danger").appendTo($card);
+    var $skillBlock = $('<div>').addClass("skill-block creature-block border-bottom border-danger").appendTo($card);
+    var $abilityBlock = $('<div>').addClass("ability-block creature-block border-bottom border-danger").appendTo($card);
+    var $actionBlock = $('<div>').addClass("action-block creature-block border-bottom border-danger").appendTo($card);
+    var $reactionBlock = $('<div>').addClass("reaction-block creature-block border-bottom border-danger").appendTo($card);
+    var $buttonBlock = $('<div>').attr('id', cardCount).appendTo($card);
 
     var parseAbilities = function(arr) {
         if (!arr) {
             $("<div>")
                 .text("None")
+                .attr('id', cardCount)
                 .addClass("abilities edit")
                 .appendTo($abilityBlock)
         }
@@ -1524,19 +1550,23 @@ var createCard = async function(url) {
 
             $('<div>')
                 .text(abilityName)
+                .attr('id', cardCount)
                 .addClass("ability-name" + [j] + " bold inline edit")
                 .appendTo($abilityBlock)
             $('<div>')
                 .text(" ")
+                .attr('id', cardCount)
                 .addClass("inline")
                 .appendTo($abilityBlock)
             $('<div>')
                 .text(abilityDescription)
+                .attr('id', cardCount)
                 .addClass("ability-desc" + [j] + " inline edit")
                 .appendTo($abilityBlock)
             $('<div>')
+                .attr('id', cardCount)
+                .addClass("mt-2")    
                 .appendTo($abilityBlock)
-                .addClass("mt-2")
         }
     }
 
@@ -1544,6 +1574,7 @@ var createCard = async function(url) {
         if (!arr) {
             $("<div>")
                 .text("None")
+                .attr('id', cardCount)
                 .addClass("actions edit")
                 .appendTo($actionBlock)
         }
@@ -1553,18 +1584,22 @@ var createCard = async function(url) {
 
             $('<div>')
                 .text(actionName)
+                .attr('id', cardCount)
                 .addClass("action-name" + [j] + " bold inline edit")
                 .appendTo($actionBlock)
             $('<div>')
                 .text(" ")
+                .attr('id', cardCount)
                 .addClass("inline")
                 .appendTo($actionBlock)
             $('<div>')
                 .text(actionDescription)
+                .attr('id', cardCount)
                 .addClass("action-desc" + [j] + " inline edit")
                 .appendTo($actionBlock)
             $('<div>')
                 .appendTo($actionBlock)
+                .attr('id', cardCount)
                 .addClass("mt-2")
         }
     }
@@ -1573,6 +1608,7 @@ var createCard = async function(url) {
         if (!arr) {
             $("<div>")
                 .text("None")
+                .attr('id', cardCount)
                 .addClass("reactions edit")
                 .appendTo($reactionBlock)
         }
@@ -1582,46 +1618,55 @@ var createCard = async function(url) {
 
             $('<div>')
                 .text(reactionName)
+                .attr('id', cardCount)
                 .addClass("reaction-name" + [j] + " bold inline edit")
                 .appendTo($reactionBlock)
             $('<div>')
                 .text(" ")
+                .attr('id', cardCount)
                 .addClass("inline")
                 .appendTo($reactionBlock)
             $('<div>')
                 .text(reactionDescription)
+                .attr('id', cardCount)
                 .addClass("reaction-desc" + [j] + " inline edit")
                 .appendTo($reactionBlock)
             $('<div>')
-                .appendTo($reactionBlock)
+                .attr('id', cardCount)
                 .addClass("mt-2")
+                .appendTo($reactionBlock)
         }
     }
 
     // nameBlock elements
     $('<h2>')
         .text(results.name)
+        .attr('id', cardCount)
         .addClass("name edit")
         .appendTo($nameBlock);
     $('<div>')
         .text(results.size)
         .addClass("size sta inline edit")
-        .attr('id', 'size')
+        .attr('id', cardCount)
         .appendTo($nameBlock);
     $('<div>')
         .text(" ")
+        .attr('id', cardCount)
         .addClass("inline")
         .appendTo($nameBlock);
     $('<div>')
         .text(results.type)
+        .attr('id', cardCount)
         .addClass("type sta inline edit")
         .appendTo($nameBlock);
     $('<div>')
         .text(', ')
+        .attr('id', cardCount)
         .addClass("inline")
         .appendTo($nameBlock);
     $('<div>')
         .text(results.alignment)
+        .attr('id', cardCount)
         .addClass("alignment sta inline edit")
         .appendTo($nameBlock);
 
@@ -1629,58 +1674,72 @@ var createCard = async function(url) {
     // Armor Class
     $('<div>')
         .addClass("inline bold")
+        .attr('id', cardCount)
         .text("Armor Class ")
         .appendTo($statBlock)
     $('<div>')
         .text(results.armor_class)
+        .attr('id', cardCount)
         .addClass("armor-class inline edit")
         .appendTo($statBlock)
     $('<div>')
         .text(' (')
+        .attr('id', cardCount)
         .addClass("inline")
         .appendTo($statBlock)
     $('<div>')
         .text(nullChecker(results.armor_desc))
+        .attr('id', cardCount)
         .addClass("armor-desc inline edit")
         .appendTo($statBlock)
     $('<div>')
         .text(')')
+        .attr('id', cardCount)
         .addClass("inline")
         .appendTo($statBlock)
     $('<div>')
+        .attr('id', cardCount)
         .appendTo($statBlock)
     
     // Hit Points
     $('<div>')
         .text("Hit Points ")
+        .attr('id', cardCount)
         .addClass("bold inline")
         .appendTo($statBlock)
     $('<div>')
         .text(results.hit_points)
+        .attr('id', cardCount)
         .addClass("hit-ponts inline edit")
         .appendTo($statBlock)
     $('<div>')
         .text(' (')
+        .attr('id', cardCount)
         .addClass("inline")
         .appendTo($statBlock)
     $('<div>')
         .text(results.hit_dice)
+        .attr('id', cardCount)
         .addClass("hit-dice inline edit")
         .appendTo($statBlock)
     $('<div>')
         .text(')')
+        .attr('id', cardCount)
         .addClass("inline")
         .appendTo($statBlock)
     $('<div>')
+        .attr('id', cardCount)
         .appendTo($statBlock)
     
     // speed (Need to parse by key value pairs instead of deObjectify lol)
     $('<div>')
         .addClass("inline bold")
+        .attr('id', cardCount)
         .text("Speed ")
         .appendTo($statBlock)
     $('<div>')
         .text(deObjectify(results.speed))
+        .attr('id', cardCount)
         .addClass("speed inline edit")
         .appendTo($statBlock)
 
@@ -1693,44 +1752,56 @@ var createCard = async function(url) {
         .appendTo($abilityScoreBlock)
     $('<th>')
         .text('STR')
+        .attr('id', cardCount)
         .appendTo($('#tr1' + cardCount))
     $('<th>')
         .text('DEX')
+        .attr('id', cardCount)
         .appendTo($('#tr1' + cardCount))
     $('<th>')
         .text('CON')
+        .attr('id', cardCount)
         .appendTo($('#tr1' + cardCount))
     $('<th>')
         .text('INT')
+        .attr('id', cardCount)
         .appendTo($('#tr1' + cardCount))
     $('<th>')
         .text('WIS')
+        .attr('id', cardCount)
         .appendTo($('#tr1' + cardCount))
     $('<th>')
         .text('CHA')
+        .attr('id', cardCount)
         .appendTo($('#tr1' + cardCount))
     $('<td>')
         .text(results.strength)
+        .attr('id', cardCount)
         .addClass("str edit")
         .appendTo($('#tr2' + cardCount))
     $('<td>')
         .text(results.dexterity)
+        .attr('id', cardCount)
         .addClass("dex edit")
         .appendTo($('#tr2' + cardCount))
     $('<td>')
         .text(results.constitution)
+        .attr('id', cardCount)
         .addClass("con edit")
         .appendTo($('#tr2' + cardCount))
     $('<td>')
         .text(results.intelligence)
+        .attr('id', cardCount)
         .addClass("int edit")
         .appendTo($('#tr2' + cardCount))
     $('<td>')
         .text(results.wisdom)
+        .attr('id', cardCount)
         .addClass("wis edit")
         .appendTo($('#tr2' + cardCount))
     $('<td>')
         .text(results.charisma)
+        .attr('id', cardCount)
         .addClass("cha edit")
         .appendTo($('#tr2' + cardCount))
 
@@ -1738,55 +1809,69 @@ var createCard = async function(url) {
     // need to parse saving throws as individual throws for editing and saving. NO DEOBJECTIFY
     $('<div>')
         .addClass("bold inline")
+        .attr('id', cardCount)
         .text("Saving Throws ")
         .appendTo($skillBlock)
     $('<div>')
         .text(savingThrows)
+        .attr('id', cardCount)
         .addClass('saving-throws edit inline')
         .appendTo($skillBlock)
     $('<div>')
+        .attr('id', cardCount)
         .appendTo($skillBlock)
 
     $('<div>')
         .addClass("bold inline")
+        .attr('id', cardCount)
         .text("Skills ")
         .appendTo($skillBlock)
     $('<div>')
         .text(deObjectify(results.skills))
+        .attr('id', cardCount)
         .addClass('skills edit inline')
         .appendTo($skillBlock)
     $('<div>')
+        .attr('id', cardCount)
         .appendTo($skillBlock)
 
     // Need to de-deObjectify skills...
     $('<div>')
         .addClass("bold inline")
+        .attr('id', cardCount)
         .text("Senses ")
         .appendTo($skillBlock)
     $('<div>')
         .text(results.senses)
+        .attr('id', cardCount)
         .addClass('senses edit inline')
         .appendTo($skillBlock)
     $('<div>')
+        .attr('id', cardCount)
         .appendTo($skillBlock)
     
     $('<div>')
         .addClass("bold inline")
+        .attr('id', cardCount)
         .text("Languages ")
         .appendTo($skillBlock)
     $('<div>')
         .text(results.languages)
+        .attr('id', cardCount)
         .addClass('languages edit inline')
         .appendTo($skillBlock)
     $('<div>')
+        .attr('id', cardCount)
         .appendTo($skillBlock)
 
     $('<div>')
         .addClass("bold inline")
+        .attr('id', cardCount)
         .text("Challenge ")
         .appendTo($skillBlock)
     $('<div>')
         .text(results.challenge_rating)
+        .attr('id', cardCount)
         .addClass('challenge edit inline')
         .appendTo($skillBlock)
     
@@ -1796,6 +1881,7 @@ var createCard = async function(url) {
     // actionsBlock elements
     $('<h2>')
         .text("Actions")
+        .attr('id', cardCount)
         .addClass("border-bottom border-danger")
         .appendTo($actionBlock)
     parseActions(results.actions);
@@ -1803,9 +1889,22 @@ var createCard = async function(url) {
     // reactionsBlock elements
     $('<h2>')
         .text("Reactions")
+        .attr('id', cardCount)
         .addClass("border-bottom border-danger")
         .appendTo($reactionBlock)
     parseReactions(results.reactions);
+
+    // buttonBlock elements
+    $('<button>')
+        .text("Save To Encounter")
+        .attr('id', cardCount)
+        .addClass("saveMonsterBtn")
+        .appendTo($buttonBlock);
+    $('<button>')
+        .text("Remove")
+        .attr('id', cardCount)
+        .addClass("removeMonsterBtn")
+        .appendTo($buttonBlock);
 
     cardCount++;
 }
@@ -1839,6 +1938,32 @@ $(document).on("click", ".edit", async function() {
     return type;
 });
 
+// !!!! Need to finish save function !!!!
+var saveMonster = function() {
+    // initialize object to store monster properties
+    monster = {}
+
+}
+
+// save button handler
+$(document).on("click", ".saveMonsterBtn", async function() {
+    var targetID = $(this).attr("id");
+
+    var $thisCreature = $("#" + targetID)
+
+    saveMonster($thisCreature);
+})
+
+// remove button handler
+$(document).on("click", ".removeMonsterBtn", function() {
+    console.log("clicked remove button")
+    var targetID = $(this).attr("id");
+
+    await removeMonster();
+    
+    $("#" + targetID).remove();
+})
+
 // blur handler for edit fields
 $(document).on("blur", "textarea", function() {
     $(this)
@@ -1862,7 +1987,7 @@ $(document).on("blur", "textarea", function() {
     $(this).replaceWith($tag);
 })
 
-// used this function to get creature names array not called currently
+// used this function to get creature names array !!!not called currently!!!
 var getCreatureNames = function() {
 
 fetch(allMonstersUrl)
