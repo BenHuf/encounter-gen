@@ -1477,6 +1477,17 @@ fetch(url)
                 .addClass("border-bottom border-danger")
                 .appendTo($reactionBlock)
             parseReactions(reactions);
+
+            $('<button>')
+        .text("Save To Encounter")
+        .attr('id', cardCount)
+        .addClass("saveMonsterBtn")
+        .appendTo($buttonBlock);
+            $('<button>')
+        .text("Remove")
+        .attr('id', cardCount)
+        .addClass("removeMonsterBtn")
+        .appendTo($buttonBlock);
         }
     });
 }
@@ -1510,6 +1521,7 @@ var createCard = async function(url) {
     var $abilityBlock = $('<div>').addClass("ability-block creature-block border-bottom border-danger").appendTo($card)
     var $actionBlock = $('<div>').addClass("action-block creature-block border-bottom border-danger").appendTo($card)
     var $reactionBlock = $('<div>').addClass("reaction-block creature-block border-bottom border-danger").appendTo($card)
+    var $buttonBlock = $('<div>').attr('id', cardCount).appendTo($card);
 
     var parseAbilities = function(arr) {
         if (!arr) {
@@ -1807,6 +1819,17 @@ var createCard = async function(url) {
         .appendTo($reactionBlock)
     parseReactions(results.reactions);
 
+    $('<button>')
+        .text("Save To Encounter")
+        .attr('id', cardCount)
+        .addClass("saveMonsterBtn")
+        .appendTo($buttonBlock);
+    $('<button>')
+        .text("Remove")
+        .attr('id', cardCount)
+        .addClass("removeMonsterBtn")
+        .appendTo($buttonBlock);
+
     cardCount++;
 }
 
@@ -1890,6 +1913,13 @@ $( function() {
       source: creatureNames
     });
   } );
+
+// remove button handler
+$(document).on("click", ".removeMonsterBtn", function() {
+    console.log("clicked remove button")
+    var targetID = $(this).attr("id");
+    $(".creature-card").remove();
+})
 
 // search form handler. Creates cards based on search terms
 $("#search-form").submit(function(event) {
