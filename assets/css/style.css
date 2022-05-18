@@ -1,3 +1,17 @@
+/* html page styling */
+.navigation{
+    border-bottom: 3px black;
+}
+
+.hero-img {
+    background-color: blueviolet;
+}
+
+.btn-bar{
+    height: 100vh;
+}
+
+
 /* Ben added these styles lol */
 .ui-autocomplete { 
     max-height: 100px;
@@ -46,3 +60,5 @@ table {
     display:none !important;
 }
 /* End Ben Styles */
+
+/* html page styling */
