@@ -1568,6 +1568,7 @@ $(document).on("click", ".saveMonsterBtn", function() {
     var targetID = $(this).attr("id");
     
     var cardHTML = $("card#" + targetID);
+
     console.log(cardHTML);
 })
 

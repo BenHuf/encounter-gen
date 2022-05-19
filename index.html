@@ -19,95 +19,96 @@
         <!-- Side bar with feature inputs -->
         <aside class="column menu btn-bar has-text-centered">
             <!-- Random Encounter Menu Field -->
-            <p class="menu-label">Random Encounter
-                <ul class="menu-list">
-                    <form id="form-control" class="w-100">
-                            <select class="form-group w-100" id="partyLevel">
-                                <option value="" disabled selected hidden>Average Party Level</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                                <option value="13">13</option>
-                                <option value="14">14</option>
-                                <option value="15">15</option>
-                                <option value="16">16</option>
-                                <option value="17">17</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
-                            </select>
-                            <select class="form-group w-100" id="partyMembers">
-                                <option value="" disabled selected hidden>Group Size</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-                            <select class="form-group w-100" id="challengeDifficulty">
-                                <option value="" disabled selected hidden>Difficulty</option>
-                                <option value="0">Easy</option>
-                                <option value="1">Medium</option>
-                                <option value="2">Hard</option>
-                                <option value="3">Deadly</option>
-                            </select>
-                            <select class="form-group w-100" id="environment" name="environment">
-                                <option value="" disabled selected hidden>Environnment</option>
-                                <option value="random">Random</option>
-                                <option value="arcticEnvironment">Arctic</option>
-                                <option value="coastalEnvironment">Coastal</option>
-                                <option value="desertEnvironment">Desert</option>
-                                <option value="forestEnvironment">Forest</option>
-                                <option value="grasslandEnvironment">Grassland</option>
-                                <option value="hillEnvironment">Hill</option>
-                                <option value="mountainEnvironment">Mountain</option>
-                                <option value="swampEnvironment">Swamp</option>
-                                <option value="underdarkEnvironment">Underdark</option>
-                                <option value="underwaterEnvironment">Underwater</option>
-                                <option value="urbanEnvironment">Urban</option>
-                            </select>
-                            <button type="submit" class="button is-black w-100" id="submit">Create Encounter</button>
-                    </form>
-                </ul>
-            </p>
+            <p class="menu-label">Random Encounter</p>
+            <ul class="menu-list">
+                <form id="form-control" class="w-100">
+                        <select class="form-group w-100" id="partyLevel">
+                            <option value="" disabled selected hidden>Average Party Level</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                        <select class="form-group w-100" id="partyMembers">
+                            <option value="" disabled selected hidden>Group Size</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                        <select class="form-group w-100" id="challengeDifficulty">
+                            <option value="" disabled selected hidden>Difficulty</option>
+                            <option value="0">Easy</option>
+                            <option value="1">Medium</option>
+                            <option value="2">Hard</option>
+                            <option value="3">Deadly</option>
+                        </select>
+                        <select class="form-group w-100" id="environment" name="environment">
+                            <option value="" disabled selected hidden>Environnment</option>
+                            <option value="random">Random</option>
+                            <option value="arcticEnvironment">Arctic</option>
+                            <option value="coastalEnvironment">Coastal</option>
+                            <option value="desertEnvironment">Desert</option>
+                            <option value="forestEnvironment">Forest</option>
+                            <option value="grasslandEnvironment">Grassland</option>
+                            <option value="hillEnvironment">Hill</option>
+                            <option value="mountainEnvironment">Mountain</option>
+                            <option value="swampEnvironment">Swamp</option>
+                            <option value="underdarkEnvironment">Underdark</option>
+                            <option value="underwaterEnvironment">Underwater</option>
+                            <option value="urbanEnvironment">Urban</option>
+                        </select>
+                        <button type="submit" class="button is-black w-100" id="submit">Create Encounter</button>
+                </form>
+            </ul>
+
             <!-- Search Monster Field -->
             <p class="menu-label">Search Monster</p>
-                <ul class="menu-list">
-                        <form id="search-form">
-                            <div class="form-group">
-                                <input id="search-input" class="search-term input" type="text" name="search-field" placeholder="search"/>
-                            </div>
-                            <div class="">
-                                <button class="button is-black w-100" id="submit-search" type="submit">Search</button>
-                            </div>
-                        </form>
-                </ul>
+            <ul class="menu-list">
+                <form id="search-form">
+                    <div class="form-group">
+                        <input id="search-input" class="search-term input" type="text" name="search-field" placeholder="search"/>
+                    </div>
+                    <div class="">
+                        <button class="button is-black w-100" id="submit-search" type="submit">Search</button>
+                    </div>
+                </form>
+            </ul>
 
             <!-- Roll Dice Field-->
             <p class="menu-label">Roll Dice</p>
-                <ul class="menu-list">
-                    <form>
-                        <select>
-                            <option value="" disabled selected hidden>Dice Type</option>
-                        </select>
-                        <select>
-                            <option value="" disabled selected hidden>Number of Dice</option>
-                        </select>
-                        <button type="button" class="button is-black w-100">Roll The Dice!</button>
-                    </form>
-                </ul>
+            <ul class="menu-list">
+                <form>
+                    <select>
+                        <option value="" disabled selected hidden>Dice Type</option>
+                    </select>
+                    <select>
+                        <option value="" disabled selected hidden>Number of Dice</option>
+                    </select>
+                    <button type="button" class="button is-black w-100">Roll The Dice!</button>
+                </form>
+            </ul>
+            <button type="button" class="button outline w-100 mt-3">Save Encounter!</button>
         </aside>
         
         <!-- Container for generated cards -->
-        <div class="column is-four-fifths-tablet is-full-mobile">
+        <div class="column is-four-fifths-tablet is-full-mobile second-column">
             <div id="encounter-container" class="columns is-justify-content-space-around">
                 <!-- Dynamically Generated encounter elements go here --->
             </div>
