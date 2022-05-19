@@ -81,8 +81,12 @@ table {
 /* End Ben Styles */
 
 
+
+
+
 /* Media Queries Start */
 @media only screen and (max-width: 600px) {
+    /* Ben added these styles lol */
     #encounter-container{
         padding: 0 5px;
     }
@@ -90,5 +94,5 @@ table {
     .creature-card {
        max-width: 100%;
     }
-}
+}   /* End Ben Styles */
 
