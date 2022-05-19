@@ -8,13 +8,6 @@ main {
     min-height: 100vh;
 }
 
-.btn-bar {
-    position: sticky;
-    position: -webkit-sticky;
-    top: 0;
-    height: fit-content;
-}
-
 select {
     height: 40px;
     width: 100%;
@@ -52,8 +45,6 @@ select {
 }
 
 #encounter-container {
-    min-width: 100%;
-    min-height: 1vh;
     display: flex;
     flex-wrap: wrap;
 }
@@ -61,8 +52,6 @@ select {
 .second-column {
     border-left: 1px solid black;
     padding-top: 0;
-    min-height: 100vh;
-    height: fit-content;
 }
 
 table {
@@ -95,23 +84,44 @@ table {
 
 
 /* Media Queries Start */
+@media only screen and (min-width:769px) {
+    .btn-bar {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        height: fit-content;
+    }
+
+    #encounter-container {
+        min-width: 100%;
+        min-height: 1vh;
+    }
+
+    .second-column {
+        min-height: 150vh;
+        height: fit-content;
+    }
+}
+
 @media only screen and (max-width: 768px) {
-    /* Ben added these styles lol */
     #encounter-container{
-        padding: 0 5px;
+        padding: 5px;
     }
 
     .creature-card {
        max-width: 100%;
     }
 
+    .btn-bar {
+        width: 100%;
+    }
     .second-column {
         border-top: 1px solid black;
-        min-height: 1vh;
+        width: 100%;
     }
 
-    .btn-bar {
-        position: relative;
+    .columns {
+        flex-wrap: wrap;
     }
-}   /* End Ben Styles */
+}
 

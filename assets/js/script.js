@@ -1478,24 +1478,30 @@ var createCard = async function(url) {
     parseReactions(results.reactions);
 
     $('<button>')
-        .text("Save To Encounter")
-        .attr('id', cardCount)
-        .addClass("saveMonsterBtn")
-        .appendTo($buttonBlock);
-    $('<button>')
         .text("Remove")
         .attr('id', cardCount)
-        .addClass("removeMonsterBtn")
+        .addClass("removeMonsterBtn button is-danger")
         .appendTo($buttonBlock);
 
     cardCount++;
 }
 
-var saveCreature = function() {
-    
+var saveEncounter = function() {
+    localStorage.setItem("encounter", JSON.stringify(savedCreatures));
 }
 
 var loadEncounter = function() {
+    savedEncounter = JSON.parse(localStorage.getItem("encounter"));
+
+    if (!savedEncounter) {
+        savedEncounter = []
+    }
+
+    for (i = 0; i < savedEncounter.length; i++) {
+        var $card = $('<card>').attr('id', cardCount).addClass("card creature-card p-2 mb-2").html(savedEncounter[i]).appendTo($container);
+        $card.find('.removeMonsterBtn').attr('id', cardCount);
+        cardCount ++;
+    }
 }
 
 // function to autocomplete search field with monster names
@@ -1564,12 +1570,22 @@ $(document).on("blur", "textarea", function() {
 })
 
 // save button hander
-$(document).on("click", ".saveMonsterBtn", function() {
-    var targetID = $(this).attr("id");
-    
-    var cardHTML = $("card#" + targetID);
+$(document).on("click", "#save-encounter", function() {
+    var creatures = $container.children();
+    console.log("clicked save button");
+    var number = 0
+    savedCreatures = [];
 
-    console.log(cardHTML);
+    for (i = 0; i < creatures.length; i++) {
+        number ++;
+    
+        var $html = $container.children(".card")[i].innerHTML;
+        console.log($html)
+        savedCreatures.push($html);
+    }
+    
+    console.log(number)
+    saveEncounter();
 })
 
 // remove button handler
@@ -1578,6 +1594,7 @@ $(document).on("click", ".removeMonsterBtn", function() {
     var targetID = $(this).attr("id");
 
     $("#" + targetID).remove();
+
 })
 
 // search form handler. Creates cards based on search terms
@@ -1597,6 +1614,9 @@ $("#search-form").submit(function(event) {
     // createApiCards(searchUrl)
     createCard(searchUrl);
 })
+
+loadEncounter();
+
 
 // !!!! TEMPORARY REMOVE WHEN UNEEDED!!!!!
 //prevents mitch's button from refreshing until he gets his script into the repo
