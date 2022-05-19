@@ -1,6 +1,20 @@
 /* Ben added these styles lol */
+body {
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+main {
+    min-height: 100vh;
+}
+
+.columns {
+    margin: 0;
+}
+
 .ui-autocomplete { 
     max-height: 100px;
+    max-width: 25vw;
     background-color: darkgrey;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -17,9 +31,22 @@
 
 .creature-card {
     border: 1px solid black;
-    width: 100%;
-    padding: 8px;
-    margin: 8px;
+    max-width: 48%;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#encounter-container {
+    min-width: 100%;
+    min-height: 1vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.btn-bar {
+    min-height: 100%;
+    border-right: 1px solid black;
 }
 
 table {
@@ -46,3 +73,15 @@ table {
     display:none !important;
 }
 /* End Ben Styles */
+
+
+/* Media Queries Start */
+@media only screen and (max-width: 600px) {
+    #encounter-container{
+        padding: 0 20px;
+    }
+
+    .creature-card {
+        max-width: 100%;
+    }
+}
