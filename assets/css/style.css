@@ -1,14 +1,37 @@
 /* html page styling */
+.header {
+    background-image: url('../images/scroll-header.jpg');
+    background-size: cover;
+    background-position: center;
+}
 .navigation{
     border-bottom: 3px black;
 }
 
 .hero-img {
-    background-color: blueviolet;
+    background-image: url('../images/hero1.0.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 .btn-bar{
     height: 100vh;
+    border-right: 5px solid black;
+}
+
+.z-index{
+    z-index: 5;
+}
+
+.cards-index{
+height: 100vh;
+border: 5px solid red;
+}
+
+.card-display{
+    height: 100vh;
+border: 5px solid blue;
+
 }
 
 
