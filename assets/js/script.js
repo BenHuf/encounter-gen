@@ -1918,7 +1918,8 @@ $( function() {
 $(document).on("click", ".removeMonsterBtn", function() {
     console.log("clicked remove button")
     var targetID = $(this).attr("id");
-    $(".creature-card").remove();
+
+    $("#" + targetID).remove();
 })
 
 // search form handler. Creates cards based on search terms
