@@ -18,6 +18,7 @@
     <main class="columns">
         <!-- Side bar with feature inputs -->
         <aside class="column menu btn-bar has-text-centered">
+            <!-- Random Encounter Menu Field -->
             <p class="menu-label">Random Encounter
                 <ul class="menu-list">
                     <form id="form-control" class="w-100">
@@ -77,6 +78,7 @@
                     </form>
                 </ul>
             </p>
+            <!-- Search Monster Field -->
             <p class="menu-label">Search Monster</p>
                 <ul class="menu-list">
                         <form id="search-form">
@@ -89,7 +91,19 @@
                         </form>
                 </ul>
 
+            <!-- Roll Dice Field-->
             <p class="menu-label">Roll Dice</p>
+                <ul class="menu-list">
+                    <form>
+                        <select>
+                            <option value="" disabled selected hidden>Dice Type</option>
+                        </select>
+                        <select>
+                            <option value="" disabled selected hidden>Number of Dice</option>
+                        </select>
+                        <button type="button" class="button is-black w-100">Roll The Dice!</button>
+                    </form>
+                </ul>
         </aside>
         
         <!-- Container for generated cards -->
