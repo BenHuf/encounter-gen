@@ -1,4 +1,9 @@
 /* html page styling */
+.main-background{
+    background-image: url('https://c.tenor.com/qMKw3QR1aCUAAAAd/medieval-inn.gif');
+    background-size: cover;
+    background-position: center;
+}
 .header {
     background-image: url('../images/scroll-header.jpg');
     background-size: cover;
@@ -16,7 +21,8 @@
 
 .btn-bar{
     height: 100vh;
-    border-right: 5px solid black;
+    border-right: 5px dashed white;
+    
 }
 
 .z-index{
