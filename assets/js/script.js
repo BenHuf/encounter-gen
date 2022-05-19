@@ -6,6 +6,7 @@ var searchMonster = 'https://api.open5e.com/monsters/';
 var secondMonsterUrl = "https://www.dnd5eapi.co/api/monsters";
 var elementType = '';
 var cardCount = 0;
+var savedCreatures = [];
 
 // retrieved this variable by running a loop through all monster entries 
 // and pushing values for name into an array
@@ -1148,6 +1149,7 @@ var nullChecker = function(val) {
     return val;
 }
 
+// calls api and returns response.json()
 var fetchStatblock = async function(url) {
     var monsterStats = await fetch(url);
     return monsterStats.json();
@@ -1169,7 +1171,7 @@ var createCard = async function(url) {
     var savingThrows = "STR " + strSave + ", DEX " + dexSave + ", CON " + conSave + ", INT " + intSave + ", WIS " + wisSave + ", CHA " + chaSave
 
     // jquery variables
-    var $card = $('<div>').attr('id', cardCount).addClass("card creature-card p-2 mb-2").appendTo($container)
+    var $card = $('<card>').attr('id', cardCount).addClass("card creature-card p-2 mb-2").appendTo($container)
     var $nameBlock = $('<div>').addClass("name-block creature-block").appendTo($card)
     var $statBlock = $('<div>').addClass("stat-block creature-block").appendTo($card)
     var $abilityScoreBlock = $('<table>').addClass("ability-table creature-block w-100").appendTo($card)
@@ -1489,6 +1491,26 @@ var createCard = async function(url) {
     cardCount++;
 }
 
+var saveCreature = function() {
+    
+}
+
+var loadEncounter = function() {
+}
+
+// function to autocomplete search field with monster names
+$( function() {
+    $("#search-input").autocomplete({
+      source: creatureNames
+    });
+  } );
+
+// resizes autocomplete to input size
+jQuery.ui.autocomplete.prototype._resizeMenu = function () {
+var ul = this.menu.element;
+ul.outerWidth(this.element.outerWidth());
+}
+
 // click handler for edit fields
 $(document).on("click", ".edit", async function() {
     $(this).removeClass("edit")
@@ -1541,18 +1563,14 @@ $(document).on("blur", "textarea", function() {
     $(this).replaceWith($tag);
 })
 
-// function to autocomplete search field with monster names
-$( function() {
-    $("#search-input").autocomplete({
-      source: creatureNames
-    });
-  } );
+// save button hander
+$(document).on("click", ".saveMonsterBtn", function() {
+    var targetID = $(this).attr("id");
+    
+    var cardHTML = $("card#" + targetID);
+    console.log(cardHTML);
+})
 
-// resizes autocomplete to input size
-jQuery.ui.autocomplete.prototype._resizeMenu = function () {
-var ul = this.menu.element;
-ul.outerWidth(this.element.outerWidth());
-}
 // remove button handler
 $(document).on("click", ".removeMonsterBtn", function() {
     console.log("clicked remove button")
@@ -1578,9 +1596,10 @@ $("#search-form").submit(function(event) {
     // createApiCards(searchUrl)
     createCard(searchUrl);
 })
-// End BenHuf - Code
 
-// prevents mitch's button from refreshing
+// !!!! TEMPORARY REMOVE WHEN UNEEDED!!!!!
+//prevents mitch's button from refreshing until he gets his script into the repo
 $("#form-control").submit(function(event) {
     event.preventDefault();
 })
+// End BenHuf - Code
