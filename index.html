@@ -95,13 +95,17 @@
             <p class="menu-label">Roll Dice</p>
             <ul class="menu-list">
                 <form>
-                    <select>
+                    <select id="dice-type">
                         <option value="" disabled selected hidden>Dice Type</option>
+                        <option value="4">d4</option>
+                        <option value="6">d6</option>
+                        <option value="8">d8</option>
+                        <option value="10">d10</option>
+                        <option value="12">d12</option>
+                        <option value="20">d20</option>
                     </select>
-                    <select>
-                        <option value="" disabled selected hidden>Number of Dice</option>
-                    </select>
-                    <button type="button" class="button is-black w-100">Roll The Dice!</button>
+                    <input id="dice-number" class="search-term input" type="text" value="Enter Number of Dice to Roll" ></input>
+                    <button type="button" id="rtdBtn" class="button is-black w-100 js-modal-trigger"data-target="modal-rtd">Roll The Dice!</button>
                 </form>
             </ul>
             <button id="save-encounter" type="button" class="button outline w-100 mt-3">Save Encounter!</button>
@@ -120,32 +124,18 @@
 
 
 <!-- RTD Modal -->
-<div class="modal fade" id="rtd-modal" tabindex="-1" role="dialog" aria-labelledby="rtd-modal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="myModalTitle">Roll the dice!!!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form>
-            <div class="form-group">
-                <label for="modal-quantity">How many dice would you like to roll? Enter a number.</label>
-                <input type="number" class="form-control" id="modal-quantity-input"></input>
-            </div>
-            <div class="form-group">
-                <label for="modal-dice-type">What type of die? Enter a numer.</label>
-                <input type="number" class="form-control" id="modal-dice-type-input">
-            </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-save">Roll</button>
+<div id="modal-rtd" class="modal">
+    <div class="modal-background"></div>
+
+    <div class="modal-content">
+        <div class="box">
+            <p>Roll Results</p>
+            <h1 id="dice-result"></h1>
+        
         </div>
     </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
 
     <!-- Search Modal -->
     <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" aria-labelledby="search-modal" aria-hidden="true">
@@ -174,6 +164,10 @@
                 <button type="button" class="btn btn-save">Roll</button>
             </div>
         </div>
+
+        <div id="dialog-message" title="Download complete">
+            <h1 id="dice-result"></h1>
+          </div>
 
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
