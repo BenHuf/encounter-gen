@@ -80,6 +80,14 @@ table {
 /* End Ben Styles */
 
 
+.modal-content {
+    height: 20vh;
+    width: 20vw;
+}
+
+#dice-result {
+    font-size: 2em;
+}
 
 
 
