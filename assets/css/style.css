@@ -79,7 +79,7 @@ table {
 }
 /* End Ben Styles */
 
-
+/* these styles are from bk */
 .modal-content {
     height: 20vh;
     width: 20vw;
@@ -88,7 +88,7 @@ table {
 #dice-result {
     font-size: 2em;
 }
-
+/* end bk styles */
 
 
 /* Media Queries Start */

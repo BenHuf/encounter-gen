@@ -1628,6 +1628,10 @@ $("#form-control").submit(function(event) {
 
 
 //Bk rtd code
+
+
+
+//this is code from bulma's documentation for modal functionality.
 document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
     function openModal($el) {
@@ -1680,7 +1684,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
+//this function gets the users inout then decides if the input was valid, if invalid throws
+//error onto modal. if valid calls the rollz api to get the dice roll result and display on modal.
 $("#rtdBtn").click(function(){
     
     var diceType = document.getElementById("dice-type")
@@ -1688,18 +1693,30 @@ $("#rtdBtn").click(function(){
     var diceNumber = document.getElementById("dice-number")
     var diceNumber= diceNumber.value
     
-    fetch("https://rolz.org/api/?" + diceNumber + "d" + diceType + ".json")
-    .then(function(response) {
-        return response.json();        
-    })
-    .then(function(data){
+  
+
+    if (!parseInt(diceNumber) || !diceType){
+        $("#dice-result").text("Please enter a number")
+    }else{
+
+        fetch("https://rolz.org/api/?" + diceNumber + "d" + diceType + ".json")
+        .then(function(response) {
+            return response.json();        
+        })
+        .then(function(data){
         
-        var diceResult= data.result
-        console.log(diceResult)
-        return diceResult
-    })
-    .then(function(diceResult){
-        $("#dice-result").text(diceResult)
-    })
+            var diceResult= data.result
+            console.log(diceResult)
+            return diceResult
+        })
+        .then(function(diceResult){
+            $("#dice-result").text(diceResult)
+        })
+    };
+})
+
+// clears the input box on focus
+$("#dice-number").focus(function(){
+    $(this).val("")
 })
 //end bk code
