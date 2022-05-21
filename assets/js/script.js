@@ -3,7 +3,7 @@ var $container = $("#encounter-container")
 var allMonstersUrl = 'https://api.open5e.com/monsters/?limit=1100';
 var someMonstersUrl = 'https://api.open5e.com/monsters/?limit=100';
 var searchMonster = 'https://api.open5e.com/monsters/';
-var secondMonsterUrl = "https://www.dnd5eapi.co/api/monsters";
+var secondMonsterUrl = "https://www.dnd5eapi.com/api/monsters";
 var elementType = '';
 var cardCount = 0;
 var savedCreatures = [];
@@ -1152,6 +1152,9 @@ var nullChecker = function(val) {
 // calls api and returns response.json()
 var fetchStatblock = async function(url) {
     var monsterStats = await fetch(url);
+    if (!monsterStats) {
+        return false;
+    }
     return monsterStats.json();
 }
 
@@ -1159,7 +1162,12 @@ var fetchStatblock = async function(url) {
 var createCard = async function(url) {
     // object properties set to variables
     var results = await fetchStatblock(url)
-    
+
+    if (results.detail === "Not found.") {
+       return false;
+    }
+
+    console.log(results);
     // need to separate these string values
     // will de-"deobjectify" the other values in a later refactor
     var strSave = nullChecker(results.strength_save)
