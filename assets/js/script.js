@@ -1719,4 +1719,9 @@ $("#rtdBtn").click(function(){
 $("#dice-number").focus(function(){
     $(this).val("")
 })
+
+
+$(".clearlm").focus(function(){
+    $("#landing-message").remove()
+})
 //end bk code

@@ -17,12 +17,12 @@
 
     <main class="columns">
         <!-- Side bar with feature inputs -->
-        <aside class="column menu btn-bar has-text-centered">
+        <aside class="column menu btn-bar has-text-centered" id="aside">
             <!-- Random Encounter Menu Field -->
             <p class="menu-label">Random Encounter</p>
             <ul class="menu-list">
                 <form id="form-control" class="w-100">
-                        <select class="form-group w-100" id="partyLevel">
+                        <select class="form-group w-100 clearlm" id="partyLevel">
                             <option value="" disabled selected hidden>Average Party Level</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -45,21 +45,21 @@
                             <option value="19">19</option>
                             <option value="20">20</option>
                         </select>
-                        <select class="form-group w-100" id="partyMembers">
+                        <select class="form-group w-100 clearlm" id="partyMembers">
                             <option value="" disabled selected hidden>Group Size</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
                             <option value="6">6</option>
                         </select>
-                        <select class="form-group w-100" id="challengeDifficulty">
+                        <select class="form-group w-100 clearlm" id="challengeDifficulty">
                             <option value="" disabled selected hidden>Difficulty</option>
                             <option value="0">Easy</option>
                             <option value="1">Medium</option>
                             <option value="2">Hard</option>
                             <option value="3">Deadly</option>
                         </select>
-                        <select class="form-group w-100" id="environment" name="environment">
+                        <select class="form-group w-100 clearlm" id="environment" name="environment">
                             <option value="" disabled selected hidden>Environnment</option>
                             <option value="random">Random</option>
                             <option value="arcticEnvironment">Arctic</option>
@@ -83,7 +83,7 @@
             <ul class="menu-list">
                 <form id="search-form">
                     <div class="form-group">
-                        <input id="search-input" class="search-term input" type="text" name="search-field" placeholder="search"/>
+                        <input id="search-input" class="search-term input clearlm" type="text" name="search-field" placeholder="search"/>
                     </div>
                     <div class="">
                         <button class="button is-black w-100" id="submit-search" type="submit">Search</button>
@@ -115,6 +115,7 @@
         <div class="column is-four-fifths-tablet is-full-mobile second-column">
             <div id="encounter-container" class="columns is-justify-content-space-around">
                 <!-- Dynamically Generated encounter elements go here --->
+                <h1 id="landing-message">Welcome To Cloud Encounter. Get Started by selecting an option!</h1>
             </div>
         </div>
     </main> 
