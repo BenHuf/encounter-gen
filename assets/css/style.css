@@ -4,6 +4,9 @@ body {
     min-width: 100vw;
 }
 
+#landing-message {
+    text-align: center;
+}
 main {
     min-height: 100vh;
 }
