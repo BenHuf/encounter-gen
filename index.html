@@ -7,106 +7,138 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css" />
 
-    <title>Encounter!</title>
+    <title>Cloud Encounter</title>
 </head>
+
 <body>
-    <header class="header has-text-centered ">
-        <h1 class="title is-1 py-1">Dungeons & Dragons Encounters & Stuff</h1>
-        <nav class="is-danger navbar">
-            <div class="navigation navbar-brand ">
-            <a href="" class="navbar-item navbar-end">Home</a>
-            <a href="" class="navbar-item">Something</a>
-            </div>
-            <div class="navbar-menu">
-                <a href="" class="navbar-item navbar-end">soemthing else</a>
-            </div>
-        </nav>
+    <header class="has-background-black has-text-centered mb-4 py-2">
+        <h1 class="title">Cloud Encounter</h1>
     </header>
 
-    <section class="hero hero-img mb-3">
-        <div class="hero-body"></div>
-    </section>
+    <main class="columns">
+        <!-- Side bar with feature inputs -->
+        <aside class="column menu btn-bar has-text-centered" id="aside">
+            <!-- Random Encounter Menu Field -->
+            <p class="menu-label">Random Encounter </br> (May Take a Moment)</p>
+            <ul class="menu-list">
+                <form id="form-control" class="w-100">
+                        <select class="form-group w-100 clearlm" id="partyLevel">
+                            <option value="" disabled selected hidden>Average Party Level</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                        <select class="form-group w-100 clearlm" id="partyMembers">
+                            <option value="" disabled selected hidden>Group Size</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                        <select class="form-group w-100 clearlm" id="challengeDifficulty">
+                            <option value="" disabled selected hidden>Difficulty</option>
+                            <option value="0">Easy</option>
+                            <option value="1">Medium</option>
+                            <option value="2">Hard</option>
+                            <option value="3">Deadly</option>
+                        </select>
+                        <select class="form-group w-100 clearlm" id="environment" name="environment">
+                            <option value="" disabled selected hidden>Environnment</option>
+                            <option value="random">Random</option>
+                            <option value="arcticEnvironment">Arctic</option>
+                            <option value="coastalEnvironment">Coastal</option>
+                            <option value="desertEnvironment">Desert</option>
+                            <option value="forestEnvironment">Forest</option>
+                            <option value="grasslandEnvironment">Grassland</option>
+                            <option value="hillEnvironment">Hill</option>
+                            <option value="mountainEnvironment">Mountain</option>
+                            <option value="swampEnvironment">Swamp</option>
+                            <option value="underdarkEnvironment">Underdark</option>
+                            <option value="underwaterEnvironment">Underwater</option>
+                            <option value="urbanEnvironment">Urban</option>
+                        </select>
+                        <button type="submit" class="button is-black w-100" id="submit">Create Encounter</button>
+                </form>
+            </ul>
 
-    <div class="main-background columns">
-        <div class="column is-one-quarter is-one-fifth-widescreen btn-bar has-text-centered">
-            <button id="search-btn" class="button is-black m-2" type="button">Search Creature</button>
-            <button id="rtd" class="button is-black m-2" type="button">Roll the Dice!</button>
-            <button id="" class="button is-black m-2" type="button">Encounter Generator</button>
+            <!-- Search Monster Field -->
+            <p class="menu-label">Search Monster</p>
+            <ul class="menu-list">
+                <form id="search-form">
+                    <div class="form-group">
+                        <input id="search-input" class="search-term input clearlm" type="text" name="search-field" placeholder="Search"/>
+                    </div>
+                    <div class="">
+                        <button class="button is-black w-100" id="submit-search" type="submit">Search</button>
+                    </div>
+                </form>
+            </ul>
 
-        </div>
-
-        <div class="column is-two-fifths-desktop cards-index">
-            <div class="z-index">
-
+            <!-- Roll Dice Field-->
+            <p class="menu-label">Roll Dice</p>
+            <ul class="menu-list">
+                <form>
+                    <select id="dice-type">
+                        <option value="" disabled selected hidden>Dice Type</option>
+                        <option value="4">d4</option>
+                        <option value="6">d6</option>
+                        <option value="8">d8</option>
+                        <option value="10">d10</option>
+                        <option value="12">d12</option>
+                        <option value="20">d20</option>
+                    </select>
+                    <input id="dice-number" class="search-term input" type="text" placeholder="Number of Dice" ></input>
+                    <button type="button" id="rtdBtn" class="button is-black w-100 js-modal-trigger"data-target="modal-rtd">Roll The Dice!</button>
+                </form>
+            </ul>
+            <button id="save-encounter" type="button" class="button outline w-100 mt-3">Save Encounter!</button>
+        </aside>
+        
+        <!-- Container for generated cards -->
+        <div class="column is-four-fifths-tablet is-full-mobile second-column">
+            <h1 id="landing-message">Welcome To Cloud Encounter. Get Started by selecting an option!</h1>
+            <div id="encounter-container" class="columns is-justify-content-space-around">
+                <!-- Dynamically Generated encounter elements go here --->
             </div>
         </div>
+    </main> 
 
-        <div class="column is-half card-display">
-            <div>
 
-            </div>
+
+
+
+<!-- RTD Modal -->
+<div id="modal-rtd" class="modal">
+    <div class="modal-background"></div>
+
+    <div class="modal-content">
+        <div class="box">
+            <p>Roll Results</p>
+            <h1 id="dice-result"></h1>
+        
         </div>
-
-
-        <!-- IGNORE THIS PLEASE-->
-        <form id="search-form" class="inline">
-            <div class="form-group">
-                <input id="search-input" class="search-term" type="text" name="search-field" placeholder="search"/>
-            </div>
-            <div class="" style="width: 10%;">
-                <button class="" id="submit-search" type="submit">Search</button>
-            </div>
-        </form>
-        <!-- IGNORE THIS PLEASE -- END-->
-
-        <div>
-            <div id="encounter-container">
-                <!-- Dynamically Generated encounter elements go here -->
-            </div>
-        </div>
-
     </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-    <!-- RTD Modal -->
-<div class="modal fade" id="rtd-modal" tabindex="-1" role="dialog" aria-labelledby="rtd-modal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="myModalTitle">Roll the dice!!!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form>
-            <div class="form-group">
-                <label for="modal-quantity">How many dice would you like to roll? Enter a number.</label>
-                <input type="number" class="form-control" id="modal-quantity-input"></input>
-            </div>
-            <div class="form-group">
-                <label for="modal-dice-type">What type of die? Enter a numer.</label>
-                <input type="number" class="form-control" id="modal-dice-type-input">
-            </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-save">Roll</button>
-        </div>
-    </div>
-
-    <!-- Search Modal -->
+    <!-- Search Modal  not in use surrently -->
     <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" aria-labelledby="search-modal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -134,10 +166,16 @@
             </div>
         </div>
 
+        <div id="dialog-message" title="Download complete">
+            <h1 id="dice-result"></h1>
+          </div>
+
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="./assets/js/script.js" ></script>
+    <script src="./assets/js/encounter.js"></script>
+    <script src="./assets/js/encounter-scripts.js"></script>
 </body>
 </html>
